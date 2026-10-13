@@ -1,0 +1,33 @@
+{
+  "id": "./",
+  "name": "তেঘরিয়া আল-কারীম ইসলামী যুব সংগঠন",
+  "short_name": "আল-কারীম যুব",
+  "description": "তেঘরিয়া আল-কারীম ইসলামী যুব সংগঠনের প্রাথমিক অ্যাপ",
+  "lang": "bn-BD",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f6f0",
+  "theme_color": "#07563d",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

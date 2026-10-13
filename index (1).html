@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07563d">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<title>তেঘরিয়া আল-কারীম ইসলামী যুব সংগঠন</title>
+<style>
+:root{--green:#07563d;--green2:#0b7651;--gold:#dfbd68;--cream:#f7f6f0;--ink:#17372b}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,"Noto Sans Bengali",sans-serif;background:var(--cream);color:var(--ink)}
+header{background:linear-gradient(135deg,#06452f,#0a7651);color:white;padding:26px 18px 22px;border-radius:0 0 24px 24px}
+.brand{display:flex;gap:13px;align-items:center}.logo{width:60px;height:60px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-size:30px;color:var(--gold);flex-shrink:0}
+h1{font-size:20px;line-height:1.45;margin:0}header p{margin:8px 0 0;color:#e4f1e8;font-size:14px}
+main{max-width:760px;margin:auto;padding:16px}
+.notice{background:#fff4d7;border:1px solid #ead18b;padding:12px;border-radius:12px;font-size:13px;margin-bottom:15px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.tile{background:white;border:1px solid #e4e8e1;border-radius:15px;padding:17px 13px;text-align:left;min-height:105px;box-shadow:0 3px 12px #102f1a0a}
+.tile .ico{font-size:24px;display:block;margin-bottom:9px}.tile strong{display:block;font-size:15px}.tile small{color:#68796f}
+.panel{background:white;border:1px solid #e2e7df;border-radius:16px;padding:17px;margin-top:16px}
+h2{font-size:18px;margin:0 0 13px;color:var(--green)}
+label{display:block;font-size:14px;margin:12px 0 6px}input,select,textarea{width:100%;padding:12px;border:1px solid #ccd7ce;border-radius:10px;background:#fff;font:inherit}
+button{border:0;border-radius:10px;background:var(--green);color:white;padding:12px 16px;font:inherit;font-weight:650;cursor:pointer;margin-top:13px}button.secondary{background:#e5efe8;color:var(--green)}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row button{flex:1}
+#result{margin-top:12px;line-height:1.6}.muted{font-size:12px;color:#64746b}footer{text-align:center;padding:24px 10px;font-size:12px;color:#64746b}
+.member{background:#f6faf6;border:1px solid #dce8dd;border-radius:10px;padding:12px;margin-top:9px;overflow-wrap:anywhere}
+@media(min-width:560px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}header{padding:32px 24px}main{padding:22px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo" aria-hidden="true">☾</div><div><h1>তেঘরিয়া আল-কারীম<br>ইসলামী যুব সংগঠন</h1><p>ইসলামের আলোয় যুব সমাজের উন্নয়ন</p></div></div>
+</header>
+<main>
+  <div class="notice"><strong>প্রাথমিক ডেমো:</strong> এই সংস্করণে আবেদনগুলো শুধু এই ব্রাউজারের ডিভাইসে সংরক্ষিত থাকে। এটি নিরাপদ অনলাইন সদস্য ডেটাবেস নয় এবং এখনো অ্যাডমিন অনুমোদন ব্যবস্থা যুক্ত নয়।</div>
+  <section class="grid" aria-label="অ্যাপের ফিচার">
+    <button class="tile" onclick="showForm()"><span class="ico">📝</span><strong>সদস্য নিবন্ধন</strong><small>সদস্যপদের আবেদন</small></button>
+    <button class="tile" onclick="showMembers()"><span class="ico">👥</span><strong>আবেদনের তালিকা</strong><small>এই ডিভাইসে সংরক্ষিত</small></button>
+    <button class="tile" onclick="showNotice()"><span class="ico">📢</span><strong>নোটিশ বোর্ড</strong><small>ঘোষণা ও আপডেট</small></button>
+    <button class="tile" onclick="showPlaceholder('চাঁদা ও হিসাব')"><span class="ico">৳</span><strong>চাঁদা ও হিসাব</strong><small>পরবর্তী ধাপে যোগ হবে</small></button>
+    <button class="tile" onclick="showPlaceholder('সদস্য আইডি কার্ড')"><span class="ico">🪪</span><strong>আইডি কার্ড</strong><small>অনুমোদনের পর</small></button>
+    <button class="tile" onclick="showPlaceholder('কমিটি ও কর্মসূচি')"><span class="ico">🗓️</span><strong>কমিটি ও কর্মসূচি</strong><small>পরবর্তী ধাপে যোগ হবে</small></button>
+  </section>
+  <section class="panel" id="content">
+    <h2>স্বাগতম</h2><p>অ্যাপের কোনো সুবিধা ব্যবহার করতে উপরের একটি বিভাগ নির্বাচন করুন।</p>
+  </section>
+  <footer>তেঘরিয়া আল-কারীম ইসলামী যুব সংগঠন<br>প্রাথমিক মোবাইল ওয়েব অ্যাপ ডেমো</footer>
+</main>
+<script>
+const KEY='teghoria_demo_applications_v1';
+function getApplications(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return []}}
+function showForm(){
+ document.getElementById('content').innerHTML=`
+ <h2>সদস্যপদের আবেদন</h2>
+ <form id="memberForm">
+ <label for="name">পূর্ণ নাম *</label><input id="name" required maxlength="100" autocomplete="name">
+ <label for="phone">মোবাইল নম্বর *</label><input id="phone" required inputmode="tel" maxlength="20" placeholder="01XXXXXXXXX">
+ <label for="area">এলাকার ধরন *</label><select id="area"><option>ওয়ার্ড</option><option>ইউনিয়ন</option><option>থানা</option></select>
+ <label for="address">ঠিকানা</label><textarea id="address" rows="2" maxlength="250"></textarea>
+ <button type="submit">আবেদন সংরক্ষণ করুন</button>
+ </form><p class="muted">বাস্তব ব্যবহারের আগে অনলাইন লগইন, সার্ভার এবং অ্যাডমিন অনুমোদন যুক্ত করতে হবে।</p>`;
+ document.getElementById('memberForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const item={id:'DEMO-'+Date.now().toString().slice(-7),name:document.getElementById('name').value.trim(),phone:document.getElementById('phone').value.trim(),area:document.getElementById('area').value,address:document.getElementById('address').value.trim(),status:'অনুমোদনের অপেক্ষায়'};
+  const apps=getApplications();apps.unshift(item);
+  try{localStorage.setItem(KEY,JSON.stringify(apps));document.getElementById('content').innerHTML='<h2>আবেদন সংরক্ষিত হয়েছে</h2><p>ডেমো আইডি: <strong>'+escapeHtml(item.id)+'</strong></p><p>এটি শুধু এই ডিভাইসে সংরক্ষিত হয়েছে। অনলাইন অ্যাডমিনের কাছে যায়নি।</p><button onclick="showMembers()">আবেদনের তালিকা দেখুন</button>'}
+  catch(err){alert('ডিভাইসে তথ্য সংরক্ষণ করা যায়নি।')}
+ });
+}
+function showMembers(){
+ const apps=getApplications();
+ document.getElementById('content').innerHTML='<h2>এই ডিভাইসের আবেদন</h2>'+(apps.length?apps.map(a=>`<div class="member"><strong>${escapeHtml(a.name)}</strong><br>ডেমো আইডি: ${escapeHtml(a.id)}<br>মোবাইল: ${escapeHtml(a.phone)}<br>এলাকা: ${escapeHtml(a.area)}<br>অবস্থা: ${escapeHtml(a.status)}</div>`).join(''):'<p>এখনো কোনো আবেদন সংরক্ষণ করা হয়নি।</p>')+'<button class="secondary" onclick="showForm()">নতুন আবেদন</button>';
+}
+function showNotice(){document.getElementById('content').innerHTML='<h2>নোটিশ বোর্ড</h2><div class="member"><strong>স্বাগতম</strong><p>তেঘরিয়া আল-কারীম ইসলামী যুব সংগঠনের অ্যাপের প্রাথমিক ডেমোতে আপনাকে স্বাগতম।</p></div><p class="muted">পরবর্তী সংস্করণে অ্যাডমিন নোটিশ প্রকাশ করতে পারবেন।</p>'}
+function showPlaceholder(title){document.getElementById('content').innerHTML='<h2>'+escapeHtml(title)+'</h2><p>এই ফিচারটি পরবর্তী ধাপে তৈরি করা হবে।</p><p class="muted">বাস্তব সদস্য ও আর্থিক তথ্যের জন্য নিরাপদ লগইন এবং সার্ভার-সাইড অনুমতি আবশ্যক।</p>'}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(console.error));
+}
+</script>
+</body>
+</html>
